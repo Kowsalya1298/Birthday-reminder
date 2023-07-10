@@ -2,27 +2,31 @@ import "./board.css";
 import List from "./list";
 import { today, upcoming } from "../utils";
 
-const BoardDetails = ({ birthday, monthCount, anniversary }) => {
+const BoardDetails = ({ birthday, monthCount, anniversary, data }) => {
   return (
-    <div className="display-flex">
-      <div id="site-main">
-        {/* <h3 className="text-dark title">Birthday Reminder</h3> */}
+    <div className="display-flex" >
+      <div id="flex-column">
+        <h2 className="upcoming text-dark">Today</h2>
+        <div id="site-main">
 
-        <div className="board">
-          <List info={today(birthday)}></List>
-          <h3 className="upcoming text-dark">Upcoming Birthday</h3>
-          <List info={upcoming(birthday, monthCount)} upcoming={true}></List>
+          <div className="board">
+
+            <List info={today(data)}></List>
+          </div>
         </div>
       </div>
-      <div id="site-main">
-        {/* <h3 className="text-dark title">Anniversary Reminder</h3> */}
 
-        <div className="board">
-          <List info={today(anniversary)}></List>
-          <h3 className="upcoming text-dark">Upcoming Anniversary</h3>
-          <List info={upcoming(anniversary, monthCount)} upcoming={true}></List>
+      <div id="flex-column">
+        <h2 className="upcoming text-dark">Upcoming</h2>
+        <div id="site-main">
+
+          <div className="board">
+
+            <List info={upcoming(data, monthCount)} upcoming={true}></List>
+          </div>
         </div>
       </div>
+
     </div>
   );
 };

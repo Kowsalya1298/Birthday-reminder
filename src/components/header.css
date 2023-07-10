@@ -1,0 +1,17 @@
+.header{
+    display: flex;
+    gap: 10rem;
+    justify-content:space-evenly; 
+    align-items: center;
+    background-color: rgb(203, 201, 201);
+    
+}
+.imgStyle{
+    margin-left: 5rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.headerStyle{
+    display: inline-flex;
+}

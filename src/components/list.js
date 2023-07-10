@@ -2,30 +2,25 @@ import React from "react";
 import { getMonthName } from "../utils";
 
 export default function list({ info, upcoming }) {
-  return <ul>{iterate(info, upcoming)}</ul>;
-}
-
-function iterate(data, flag) {
-  if (!data) return;
-  const bgColor = flag ? { backgroundColor: "#ffe66d" } : {};
-
   return (
     <>
-      {data.map((person, index) => {
+      {info.map((person, index) => {
         return (
-          <li key={index}>
-            <div className="flex" style={bgColor}>
-              <div className="title">
-                <h4 className="name">{person.fullName}</h4>
-                <h5 className="dob">
-                  {person.day}th {getMonthName(person.month)}
-                </h5>
-                <p className="manager">{person.Manager}</p>
-              </div>
+          <div key={index} className="flex" >
+            <div className="title">
+              <h4 className="name">Name: {person.fullName}</h4>
+              <h5 className="dob">
+                DOB:  {person.day}th {getMonthName(person.month)}
+              </h5>
+              <p className="event">Event:  {person.event}</p>
+              <p className="manager">Manager:  {person.Manager}</p>
             </div>
-          </li>
+          </div>
         );
       })}
     </>
   );
 }
+
+
+

@@ -5,8 +5,9 @@ export const today = (person) => {
   let filterData = person.filter((data) => {
     let day = data.day;
     let month = data.month;
-    return currentDay === day && currentMonth === month;
+    return currentDay == day && currentMonth == month;
   });
+  console.log(filterData);
   return filterData;
 };
 
@@ -18,9 +19,11 @@ export const upcoming = (person, monthSelected) => {
     let day = data.day;
     let month = data.month;
     // if (month === currentMonth && day === currentDay) return false;
+    if(getMonthName(currentMonth) === monthSelected)
+      return day > currentDay &&  getMonthName(month) === monthSelected
     return (
-      month >= currentMonth &&
-      day > currentDay &&
+      // month >= currentMonth &&
+      // day > currentDay &&
       getMonthName(month) === monthSelected
     );
   });
