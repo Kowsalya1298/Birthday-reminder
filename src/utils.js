@@ -11,29 +11,36 @@ export const today = (person) => {
 };
 
 // upcoming events
-export const upcoming = (person, monthSelected, manager) => {
-  let currentMonth = new Date().getMonth() + 1;
+export const upcoming = (person, monthSelected, managerSelected) => {
+  console.log(managerSelected);
+  console.log(monthSelected);
+  let currentMonth = new Date().getMonth();
   let currentDay = new Date().getDate();
   let filterData = person.filter((data) => {
     let day = data.day;
-    let month = data.month;
-    if (getMonthName(currentMonth) === monthSelected) {
-      if (manager?.length > 0) {
-        return getMonthName(month) === monthSelected && data.Manager === manager && day > currentDay;
-      }else{
-        return day > currentDay && getMonthName(month) === monthSelected
+    let month = data.month - 1;
+    let manager = data.Manager;
+    if (monthSelected.length > 0) {
+      if (managerSelected?.length > 0) {
+        if (month === currentMonth) {
+          if (monthSelected.length === 1)
+            return monthSelected.includes(month) && managerSelected.includes(manager) && day > currentDay;
+          return monthSelected.includes(month) && managerSelected.includes(manager);
+        };
+        return monthSelected.includes(month) && managerSelected.includes(manager)
+
+      } else {
+        if (currentMonth === month) {
+          if (monthSelected.length === 1) {
+            return monthSelected.includes(month) && day > currentDay;
+          }
+          return monthSelected.includes(month)
+        }
+        return monthSelected.includes(month)
       }
-    }
-    if (getMonthName(currentMonth) !== monthSelected) {
-      if (manager?.length > 0) {
-        return getMonthName(month) === monthSelected && data.Manager === manager && day > currentDay;
-      }else{
-        return day > currentDay && getMonthName(month) === monthSelected
-      }
-    }
-    return (
-      getMonthName(month) === monthSelected
-    );
+    }else
+    return person
+
   });
 
   return filterData

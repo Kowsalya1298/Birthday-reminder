@@ -72,6 +72,3 @@ ul > li img {
   min-height: calc(100vh-150px-75);
   margin: 2rem;
 }
-.multiSelectContainer{
-  width: 20% !important;
-}

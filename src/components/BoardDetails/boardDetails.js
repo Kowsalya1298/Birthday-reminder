@@ -2,10 +2,11 @@ import "./boardDetails.css";
 import List from "../List/list";
 import { today, upcoming } from "../../utils";
 import { useState } from "react";
-import {managerNames} from "../../constants"
+import {managerNames as options} from "../../constants"
+import Multiselect from 'multiselect-react-dropdown';
 
 const BoardDetails = ({ birthday, monthCount, anniversary, data }) => {
-  const [manager, setManager] = useState("")
+  const [manager, setManager] = useState([]);
   return (
     <div className="display-flex" >
       <div id="flex-column">
@@ -22,24 +23,24 @@ const BoardDetails = ({ birthday, monthCount, anniversary, data }) => {
       <div id="flex-column">
         <h2 className="upcoming text-dark">Upcoming</h2>
         <div id="site-main">
-        <div >
-            <label >
-              Filter by Manager
-              <select style={{ marginLeft: "1rem" }}
-                value={manager}
-                onChange={(e) => {
-                  setManager(e.target.value);
-                }}
-              >
-                {managerNames?.map((m, i) => {
-                  return (
-                    <option key={i} value={m}>
-                      {m}
-                    </option>
-                  );
-                })}
-              </select>
+        <div style={{display:"flex",gap:"1rem"}} >
+        <label style={{alignSelf: "center"}}>
+             Filter By Manager
             </label>
+            <Multiselect
+              options={options}
+              showCheckbox={true}
+              hidePlaceholder={true}
+              onSelect={(e) => {
+                e.map((x, i) => {
+                  setManager(manager.concat(e[i].name))
+                })
+              }}
+              onRemove={(e) => {
+                manager.length > 0 ? setManager(e.map(x=>x.name)) : setManager([])
+              }}
+              displayValue="name"
+            />
           </div>
           <div className="board">
 

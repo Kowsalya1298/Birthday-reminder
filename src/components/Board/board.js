@@ -10,9 +10,9 @@ export const Board = () => {
   const [birthday, setBirthday] = useState([]);
   const [data, setData] = useState([]);
   const [anniversary, setAnniversary] = useState([]);
-  
+
   const [month, setMonth] = React.useState(
-    getMonthName(new Date().getMonth() + 1)
+    [new Date().getMonth()]
   );
   const handleImport = (event) => {
     const files = event.target.files;
@@ -88,41 +88,36 @@ export const Board = () => {
       )}
       {birthday.length > 0 && anniversary.length > 0 && (
         <div className="">
-          <div >
-            <label >
-              Select the month
-              <select style={{ marginLeft: "1rem" }}
-                value={month}
-                onChange={(e) => {
-                  setMonth(e.target.value);
-                }}
-              >
-                {monthNames?.map((m, i) => {
-                  return (
-                    <option key={i} value={m}>
-                      {m}
-                    </option>
-                  );
-                })}
-              </select>
+          <div style={{ display: "flex", gap: '1rem' }}>
+            <label style={{ alignSelf: "center" }}>
+              Filter By Month
             </label>
             <Multiselect
-              options={options} // Options to display in the dropdown
-              showCheckbox = {true}
-              // selectedValues={month} // Preselected value to persist in dropdown
-              onSelect={()=>{}} // Function will trigger on select event
-              onRemove={()=>{}} // Function will trigger on remove event
-              displayValue="name" // Property name to display in the dropdown options
+              options={options}
+              showCheckbox={true}
+              hidePlaceholder={true}
+              selectedValues={[{ month: getMonthName(new Date().getMonth()+1), id: new Date().getMonth() }]}
+              onSelect={(e) => {
+                e.map((x, i) => {
+                  setMonth(month.concat(e[i].id))
+                })
+              }}
+              onRemove={(e) => {
+                month.length> 0 ? setMonth(e.map(x=>x.id)): setMonth([])
+               
+              }}
+              displayValue="month"
             />
+            <div className="col-md-6"  style={{ marginLeft: "auto" }}>
+              <button style={{ margin: "1rem" }}
+                onClick={handleExport}
+                className="btn btn-primary float-right"
+              >
+                Export to Excel <i className="fa fa-download"></i>
+              </button>
+            </div>
           </div>
-          <div className="col-md-6">
-            <button style={{ margin: "1rem" }}
-              onClick={handleExport}
-              className="btn btn-primary float-right"
-            >
-              Export to Excel <i className="fa fa-download"></i>
-            </button>
-          </div>
+
           <BoardDetails
             birthday={birthday}
             anniversary={anniversary}
