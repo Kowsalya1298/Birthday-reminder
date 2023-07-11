@@ -88,8 +88,8 @@ export const Board = () => {
       )}
       {birthday.length > 0 && anniversary.length > 0 && (
         <div className="">
-          <div style={{ display: "flex", gap: '1rem' }}>
-            <label style={{ alignSelf: "center" }}>
+          <div style={{ display: "flex", gap: '1rem',alignItems:'center' }}>
+            <label>
               Filter By Month
             </label>
             <Multiselect
@@ -109,9 +109,8 @@ export const Board = () => {
               displayValue="month"
             />
             <div className="col-md-6"  style={{ marginLeft: "auto" }}>
-              <button style={{ margin: "1rem" }}
+              <button className="btnStyle" style={{ margin: "1rem" }}
                 onClick={handleExport}
-                className="btn btn-primary float-right"
               >
                 Export to Excel <i className="fa fa-download"></i>
               </button>

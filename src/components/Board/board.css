@@ -7,7 +7,7 @@
 }
 
 body {
-  --color-dark: #343a40;
+  --color-dark: #072ba1;
   --color-light: #f5f3f4;
   --panelColor: #ffe66d;
   --active: #06d6a0;
@@ -71,4 +71,17 @@ ul > li img {
 .main-body{
   min-height: calc(100vh-150px-75);
   margin: 2rem;
+}
+.chip, .multiSelectContainer li:hover,.highlightOption {
+  background-color: #2659d3 !important;
+}
+.btnStyle{
+  background-color:var(--color-dark);
+  color: white;
+  font-size: 16px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+  border: none;
 }

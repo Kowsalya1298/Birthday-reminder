@@ -10,7 +10,7 @@ const BoardDetails = ({ birthday, monthCount, anniversary, data }) => {
   return (
     <div className="display-flex" >
       <div id="flex-column">
-        <h2 className="upcoming text-dark">Today</h2>
+        <h1 style={{textAlign:'left'}} className="upcoming text-dark">Today</h1>
         <div id="site-main">
 
           <div className="board">
@@ -21,7 +21,7 @@ const BoardDetails = ({ birthday, monthCount, anniversary, data }) => {
       </div>
 
       <div id="flex-column">
-        <h2 className="upcoming text-dark">Upcoming</h2>
+        <h1 style={{textAlign:'left'}} className="upcoming text-dark">Upcoming</h1>
         <div id="site-main">
         <div style={{display:"flex",gap:"1rem"}} >
         <label style={{alignSelf: "center"}}>
