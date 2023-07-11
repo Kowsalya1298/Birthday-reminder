@@ -7,12 +7,12 @@ export default function list({ info, upcoming }) {
     {info?.length >0 ? info.map((person, index) => {
         return (
           <div key={index} className="flex" >
-            <div className="title">
-              <h4 className="name">{person.fullName}</h4>
+            <div className="title" style={{textAlign:'left'}}>
+              <h4 className="name">Name: {person.fullName}</h4>
               <h5 className="dob">
-                {person.day}th {getMonthName(person.month)}
+                DOB:  {person.day}th {getMonthName(person.month)}
               </h5>
-              <p className="event">{person.event}</p>
+              <p className="event">Event:  {person.event}</p>
               <p className="manager">Manager:  {person.Manager}</p>
             </div>
           </div>

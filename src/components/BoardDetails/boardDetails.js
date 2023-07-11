@@ -20,12 +20,12 @@ const BoardDetails = ({ birthday, monthCount, anniversary, data }) => {
         </div>
       </div>
 
-      <div id="flex-column">
+      <div id="flex-column" style={{rowGap:'3rem'}}>
         <h1 style={{textAlign:'left'}} className="upcoming text-dark">Upcoming</h1>
         <div id="site-main">
         <div style={{display:"flex",gap:"1rem"}} >
         <label style={{alignSelf: "center"}}>
-             Filter By Manager
+        <b>Filter By Manager</b>
             </label>
             <Multiselect
               options={options}

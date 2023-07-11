@@ -78,7 +78,7 @@ export const Board = () => {
           <input
             type="file"
             name="file"
-            className="custom-file-input"
+            className="btnOutlined"
             id="inputGroupFile"
             required
             onChange={handleImport}
@@ -90,7 +90,7 @@ export const Board = () => {
         <div className="">
           <div style={{ display: "flex", gap: '1rem',alignItems:'center' }}>
             <label>
-              Filter By Month
+              <b>Filter By Month</b>
             </label>
             <Multiselect
               options={options}

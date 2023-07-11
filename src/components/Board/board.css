@@ -76,7 +76,7 @@ ul > li img {
   background-color: #2659d3 !important;
 }
 .btnStyle{
-  background-color:var(--color-dark);
+  background-color:#2659d3;
   color: white;
   font-size: 16px;
   padding: 0.5rem;
