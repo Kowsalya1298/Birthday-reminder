@@ -1,4 +1,4 @@
-import comcast from "../assets/images/comcast.png"
+import comcast from "../../assets/images/comcast.png"
 import "./footer.css";
 const Footer = ()=>{
     return(

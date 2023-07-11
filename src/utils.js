@@ -7,23 +7,31 @@ export const today = (person) => {
     let month = data.month;
     return currentDay == day && currentMonth == month;
   });
-  console.log(filterData);
   return filterData;
 };
 
-// upcoming birthdays
-export const upcoming = (person, monthSelected) => {
+// upcoming events
+export const upcoming = (person, monthSelected, manager) => {
   let currentMonth = new Date().getMonth() + 1;
   let currentDay = new Date().getDate();
   let filterData = person.filter((data) => {
     let day = data.day;
     let month = data.month;
-    // if (month === currentMonth && day === currentDay) return false;
-    if(getMonthName(currentMonth) === monthSelected)
-      return day > currentDay &&  getMonthName(month) === monthSelected
+    if (getMonthName(currentMonth) === monthSelected) {
+      if (manager?.length > 0) {
+        return getMonthName(month) === monthSelected && data.Manager === manager && day > currentDay;
+      }else{
+        return day > currentDay && getMonthName(month) === monthSelected
+      }
+    }
+    if (getMonthName(currentMonth) !== monthSelected) {
+      if (manager?.length > 0) {
+        return getMonthName(month) === monthSelected && data.Manager === manager && day > currentDay;
+      }else{
+        return day > currentDay && getMonthName(month) === monthSelected
+      }
+    }
     return (
-      // month >= currentMonth &&
-      // day > currentDay &&
       getMonthName(month) === monthSelected
     );
   });
