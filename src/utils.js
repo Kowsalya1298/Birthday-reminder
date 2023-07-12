@@ -22,24 +22,16 @@ export const upcoming = (person, monthSelected, managerSelected) => {
     let manager = data.Manager;
     if (monthSelected.length > 0 || managerSelected.length>0) {
       if (managerSelected?.length > 0) {
-        if (month === currentMonth) {
-          if (monthSelected.length === 1)
-            return monthSelected.includes(month) && managerSelected.includes(manager) && day > currentDay;
-          return monthSelected.includes(month) && managerSelected.includes(manager);
-        };
-        return monthSelected.includes(month) && managerSelected.includes(manager)
+        return monthSelected.includes(month) && managerSelected.includes(manager)&& day > currentDay && month>=currentMonth
 
       } else {
         if (currentMonth === month) {
-          if (monthSelected.length === 1) {
-            return monthSelected.includes(month) && day > currentDay;
-          }
-          return monthSelected.includes(month)
+          return monthSelected.includes(month) && day > currentDay && month>=currentMonth
         }
-        return monthSelected.includes(month)
+        return monthSelected.includes(month) && day > currentDay && month>=currentMonth
       }
     }else
-    return person
+    return day > currentDay && month>=currentMonth
 
   });
 
@@ -57,3 +49,30 @@ export const getMonthName = (monthNumber) => {
   date.setMonth(monthNumber - 1);
   return date.toLocaleString("en-US", { month: "long" });
 };
+
+//completed events
+
+export const completed = (person) => {
+  let currentMonth = new Date().getMonth();
+  let currentDay = new Date().getDate();
+  let filterData = person.filter((data) => {
+    let day = data.day;
+    let month = data.month - 1;
+    if(month===currentMonth){
+      return day<currentDay
+    }else{
+      return month<=currentMonth
+    }
+    
+  });
+
+  return filterData
+    .sort(function (a, b) {
+      return a.day - b.day;
+    })
+    .sort(function (a, b) {
+      return a.month - b.month;
+    });
+};
+
+
