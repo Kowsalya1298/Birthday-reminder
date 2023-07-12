@@ -2,17 +2,17 @@ import "./boardDetails.css";
 import List from "../List/list";
 import { today, upcoming } from "../../utils";
 import { useState } from "react";
-import {managerNames as options} from "../../constants"
+import { managerNames as options } from "../../constants"
 import Multiselect from 'multiselect-react-dropdown';
+import ConfettiExplosion from 'react-confetti-explosion';
 
-const BoardDetails = ({ birthday, monthCount, anniversary, data }) => {
-  const [manager, setManager] = useState([]);
+const BoardDetails = ({ monthCount, manager, data }) => {
   return (
     <div className="display-flex" >
       <div id="flex-column">
-        <h1 style={{textAlign:'left'}} className="upcoming text-dark">Today</h1>
+        <h1 style={{ textAlign: 'left', fontWeight: 800, fontSize: '25px' }} className="upcoming text-dark">Today</h1>
         <div id="site-main">
-
+          {today(data).length > 0 && <ConfettiExplosion duration={4000} />}
           <div className="board">
 
             <List info={today(data)}></List>
@@ -20,33 +20,14 @@ const BoardDetails = ({ birthday, monthCount, anniversary, data }) => {
         </div>
       </div>
 
-      <div id="flex-column" style={{rowGap:'3rem'}}>
-        <h1 style={{textAlign:'left'}} className="upcoming text-dark">Upcoming</h1>
-        <div id="site-main">
-        <div style={{display:"flex",gap:"1rem"}} >
-        <label style={{alignSelf: "center"}}>
-        <b>Filter By Manager</b>
-            </label>
-            <Multiselect
-              options={options}
-              showCheckbox={true}
-              hidePlaceholder={true}
-              onSelect={(e) => {
-                e.map((x, i) => {
-                  setManager(manager.concat(e[i].name))
-                })
-              }}
-              onRemove={(e) => {
-                manager.length > 0 ? setManager(e.map(x=>x.name)) : setManager([])
-              }}
-              displayValue="name"
-            />
-          </div>
+      <div id="flex-column" >
+        <p style={{ textAlign: 'left', fontWeight: 800, fontSize: '25px' }} className="upcoming text-dark">Upcoming</p>
+        {(monthCount.length > 0) ? (<div id="site-main">
           <div className="board">
 
             <List info={upcoming(data, monthCount, manager)} upcoming={true}></List>
           </div>
-        </div>
+        </div>) : <p style={{ color: 'red', textAlign: 'left', margin: '1rem' }}>Please select month</p>}
       </div>
 
     </div>

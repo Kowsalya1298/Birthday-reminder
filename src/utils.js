@@ -20,7 +20,7 @@ export const upcoming = (person, monthSelected, managerSelected) => {
     let day = data.day;
     let month = data.month - 1;
     let manager = data.Manager;
-    if (monthSelected.length > 0) {
+    if (monthSelected.length > 0 || managerSelected.length>0) {
       if (managerSelected?.length > 0) {
         if (month === currentMonth) {
           if (monthSelected.length === 1)

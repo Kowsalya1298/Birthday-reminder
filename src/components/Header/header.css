@@ -3,7 +3,7 @@
     gap: 15rem;
     justify-content:space-evenly; 
     align-items: center;
-    background-color: rgb(223 223 223);
+    background-color: black;
     padding: 0.5rem 0;
 }
 .imgStyle{
@@ -14,4 +14,5 @@
 
 .headerStyle{
     display: inline-flex;
+    color: white;
 }

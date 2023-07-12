@@ -4,10 +4,10 @@ import "./header.css";
 const Header = () => {
     return (
         <>
-            <header className="header">
-                    <img alt="comcastLogo" style={{ height: "60px", weight: "100px"}} src={comcast} ></img>
-                <h2  className="headerStyle">Anniversaries and Birthdays</h2>
-                    <img alt="comcastLogo" style={{ height: "60px", weight: "100px" }} src={xto}></img>
+            <header className="header">                
+                    <img alt="comcastLogo" style={{ height: "50px", weight: "100px"}} src={comcast} ></img>
+                <h1  className="headerStyle">Anniversaries and Birthdays</h1>
+                    <img alt="comcastLogo" style={{ height: "40px", weight: "100px" }} src={xto}></img>
             </header>
         </>
     )
