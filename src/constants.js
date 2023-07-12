@@ -14,13 +14,14 @@ export const options = [
   { month: 'Select all', id: 12 }
 ];
 export const managerNames = [
-  {name:"George Vamsi", id: 0},
-  {name:"Subash Subramani", id: 1},
-  {name:"Naveen Lakra",id: 2 },
-  {name:"Prateek Singh", id: 3 },
-  {name:"Harini Subramanian", id: 4 },
-  {name:"Karthiekayn P", id: 5 },
-  {name:"Karthiekayan S",  id: 6 },
-  {name:"Ganesh Kumar",  id: 7 }
+  {name:"Ganesh Kumar",  id: 0 },
+  {name:"George Vamsi", id: 1},
+  {name:"Harini Subramanian", id: 2 },
+  {name:"Karthiekayn P", id: 3 },
+  {name:"Karthiekayan S",  id: 4 },
+  {name:"Naveen Lakra",id: 5 },
+  {name:"Prateek Singh", id: 6 },  
+  {name:"Subash Subramani", id: 7},
+  {name:"Select all", id: 8}
 ]
 

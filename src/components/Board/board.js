@@ -97,9 +97,8 @@ export const Board = () => {
               options={options}
               showCheckbox={true}
               hidePlaceholder={true}
-              selectedValues={[{ month: getMonthName(new Date().getMonth() + 1), id: new Date().getMonth() }]}
+              selectedValues={month.includes(12)?options:[{ month: getMonthName(new Date().getMonth() + 1), id: new Date().getMonth() }]}
               onSelect={(e) => {
-                console.log(e);
                 e.map((x, i) => {
                   setMonth(month.concat(e[i].id))
                 }
@@ -118,6 +117,7 @@ export const Board = () => {
               <Multiselect
                 options={managerNames}
                 showCheckbox={true}
+                selectedValues={manager.includes(8)?managerNames:[]}
                 hidePlaceholder={true}
                 onSelect={(e) => {
                   e.map((x, i) => {
