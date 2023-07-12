@@ -12,8 +12,6 @@ export const today = (person) => {
 
 // upcoming events
 export const upcoming = (person, monthSelected, managerSelected) => {
-  console.log(managerSelected);
-  console.log(monthSelected);
   let currentMonth = new Date().getMonth();
   let currentDay = new Date().getDate();
   let filterData = person.filter((data) => {
@@ -68,10 +66,10 @@ export const completed = (person) => {
 
   return filterData
     .sort(function (a, b) {
-      return a.day - b.day;
+      return b.day - a.day;
     })
     .sort(function (a, b) {
-      return a.month - b.month;
+      return b.month - a.month;
     });
 };
 

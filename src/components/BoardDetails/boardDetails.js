@@ -1,10 +1,8 @@
 import "./boardDetails.css";
 import List from "../List/list";
 import { today, upcoming, completed } from "../../utils";
-import { useState } from "react";
-import { managerNames as options } from "../../constants"
-import Multiselect from 'multiselect-react-dropdown';
 import ConfettiExplosion from 'react-confetti-explosion';
+import Divider from "@material-ui/core/Divider";
 
 const BoardDetails = ({ monthCount, manager, data }) => {
   return (
@@ -19,7 +17,7 @@ const BoardDetails = ({ monthCount, manager, data }) => {
           </div>
         </div>
       </div>
-
+      <Divider />
       <div id="flex-column" >
         <p style={{ textAlign: 'left', fontWeight: 800, fontSize: '25px' }} className="upcoming text-dark">Upcoming</p>
         {(monthCount.length > 0) ? (<div id="site-main">
@@ -29,7 +27,7 @@ const BoardDetails = ({ monthCount, manager, data }) => {
           </div>
         </div>) : <p style={{ color: 'red', textAlign: 'left', margin: '1rem' }}>Please select month</p>}
       </div>
-
+      <Divider />
       <div id="flex-column" >
         <p style={{ textAlign: 'left', fontWeight: 800, fontSize: '25px' }} className="upcoming text-dark">Completed</p>
         {(monthCount.length > 0) ? (<div id="site-main">

@@ -50,7 +50,7 @@ ul {
   width:250px;
   height: 140px;
   border-radius: 15px;
-  box-shadow: 1px 10px 20px #858b9259;
+  box-shadow: 5px 5px 20px #858b9259;
 }
 
 ul > li img {

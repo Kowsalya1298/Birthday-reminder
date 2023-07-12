@@ -10,7 +10,8 @@ export const options = [
   { month: 'September', id: 8 },
   { month: 'October', id: 9 },
   { month: 'November', id: 10 },
-  { month: 'December', id: 11 }
+  { month: 'December', id: 11 },
+  { month: 'Select all', id: 12 }
 ];
 export const managerNames = [
   {name:"George Vamsi", id: 0},

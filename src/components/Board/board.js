@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./board.css";
 import { read, utils, writeFile } from "xlsx";
 import BoardDetails from "../BoardDetails/boardDetails";
-import { managerNames , options } from "../../constants";
+import { managerNames, options } from "../../constants";
 import { getMonthName, upcoming } from "../../utils";
 import Multiselect from 'multiselect-react-dropdown';
 
@@ -41,8 +41,8 @@ export const Board = () => {
   };
   const handleExport = () => {
     const headings = [["Sl No", "Full Name", "Day", "Month", "Manager"]];
-    const filteredAniv = upcoming(anniversary, month,manager);
-    const filteredBday = upcoming(birthday, month,manager);
+    const filteredAniv = upcoming(anniversary, month, manager);
+    const filteredBday = upcoming(birthday, month, manager);
     const wb = utils.book_new();
     const ws1 = utils.json_to_sheet([]);
     const ws2 = utils.json_to_sheet([]);
@@ -88,55 +88,58 @@ export const Board = () => {
       )}
       {birthday.length > 0 && anniversary.length > 0 && (
         <div className="">
-          <div style={{ display: "flex", gap: '1rem',alignItems:'center' }}>
+          {/* filters */}
+         <div style={{padding:'1rem', border:'2px solid rgba(0, 0, 0, 0.12)', borderRadius:'15px'}}> <div style={{ display: "flex", gap: '1rem', alignItems: 'center' }}>
             <label>
-              Month
+              <b>Select Month</b>
             </label>
             <Multiselect
               options={options}
               showCheckbox={true}
               hidePlaceholder={true}
-              selectedValues={[{ month: getMonthName(new Date().getMonth()+1), id: new Date().getMonth() }]}
+              selectedValues={[{ month: getMonthName(new Date().getMonth() + 1), id: new Date().getMonth() }]}
               onSelect={(e) => {
+                console.log(e);
                 e.map((x, i) => {
                   setMonth(month.concat(e[i].id))
-                })
+                }
+                )
               }}
               onRemove={(e) => {
-                month.length> 0 ? setMonth(e.map(x=>x.id)): setMonth([])
-               
+                month.length > 0 ? setMonth(e.map(x => x.id)) : setMonth([])
+
               }}
               displayValue="month"
             />
-             <div style={{display:"flex",gap:"1rem"}} >
-        <label style={{alignSelf: "center"}}>
-        Manager
-            </label>
-            <Multiselect
-              options={managerNames}
-              showCheckbox={true}
-              hidePlaceholder={true}
-              onSelect={(e) => {
-                e.map((x, i) => {
-                  setManager(manager.concat(e[i].name))
-                })
-              }}
-              onRemove={(e) => {
-                manager.length > 0 ? setManager(e.map(x=>x.name)) : setManager([])
-              }}
-              displayValue="name"
-            />
-          </div>
-           
-          </div>
-        <div className="col-md-6"  style={{ display:'flex' }}>
-              <button disabled = {(month.length===0)} className="btnStyle" style={{ margin: "1rem 1rem 1rem 0", backgroundColor:( month.length===0) ? 'grey':''}}
-                onClick={handleExport}
-              >
-                Export to Excel <i className="fa fa-download"></i>
-              </button>
+            <div style={{ display: "flex", gap: "1rem" }} >
+              <label style={{ alignSelf: "center" }}>
+                <b>Select Manager</b>
+              </label>
+              <Multiselect
+                options={managerNames}
+                showCheckbox={true}
+                hidePlaceholder={true}
+                onSelect={(e) => {
+                  e.map((x, i) => {
+                    setManager(manager.concat(e[i].name))
+                  })
+                }}
+                onRemove={(e) => {
+                  manager.length > 0 ? setManager(e.map(x => x.name)) : setManager([])
+                }}
+                displayValue="name"
+              />
             </div>
 
+          </div>
+          <div className="col-md-6" style={{ display: 'flex' }}>
+            <button disabled={(month.length === 0)} className="btnStyle" style={{ margin: "1rem 1rem 0 0", backgroundColor: (month.length === 0) ? 'grey' : '' }}
+              onClick={handleExport}
+            >
+              Export to Excel <i className="fa fa-download"></i>
+            </button>
+          </div>
+        </div>
           <BoardDetails
             birthday={birthday}
             anniversary={anniversary}
